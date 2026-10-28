@@ -1153,30 +1153,36 @@ Public Class frmprof
     End Sub
 
     Private Sub ApplyProfessorTheme()
+        Theme.StyleForm(Me)
         Text = "The Dauntless Grading System"
         Lbltransparentgradingsytem.Text = "The Dauntless Grading System"
-        Lbltransparentgradingsytem.Parent.BackColor = Color.DarkGreen
-        Lbltransparentgradingsytem.BackColor = Color.DarkGreen
-        Lbltransparentgradingsytem.ForeColor = Color.White
-        LblRole.BackColor = Color.DarkGreen
+        Lbltransparentgradingsytem.Parent.BackColor = Theme.Primary
+        Lbltransparentgradingsytem.BackColor = Theme.Primary
+        Lbltransparentgradingsytem.ForeColor = Theme.TextOnPrimary
+        Lbltransparentgradingsytem.Font = Theme.FontBodyBold
+        Theme.StylePill(LblRole)
         For Each button As CustomButton In {CustomButton4, CustomButton6}
-            button.NormalColor = Color.DarkGreen
-            button.HoverColor = Color.FromArgb(0, 125, 45)
-            button.ForeColor = Color.White
+            Theme.StylePrimaryButton(button)
         Next
-        BackColor = Color.White
-        pnlTabs.BackColor = Color.FromArgb(240, 248, 240)
-        pnl2ndtab.BackColor = pnlTabs.BackColor
+        BackColor = Theme.Background
+        pnlTabs.BackColor = Theme.Surface
+        pnl2ndtab.BackColor = Theme.Background
+
+        ' Nav + logout buttons: flat, ghost look with an active-friendly hover.
         For Each control As Control In {btnLogout, btnRecordScores, btnClassGrades, btnRevisionRequests, btnAnalytics, btnAuditLogs}
-            control.ForeColor = Color.DarkGreen
+            control.ForeColor = Theme.TextSecondary
             Dim button = TryCast(control, Button)
             If button IsNot Nothing Then
                 button.FlatStyle = FlatStyle.Flat
-                button.FlatAppearance.BorderColor = Color.DarkGreen
-                button.FlatAppearance.MouseOverBackColor = Color.FromArgb(220, 238, 220)
+                button.FlatAppearance.BorderSize = 0
+                button.FlatAppearance.MouseOverBackColor = Theme.PrimarySoft
+                button.BackColor = Theme.Background
+                button.Cursor = Cursors.Hand
+                button.Font = Theme.FontBody
                 button.UseVisualStyleBackColor = False
             End If
         Next
+        btnLogout.ForeColor = Theme.Primary
     End Sub
 
     Private Sub ConfigureProfessorLayout()

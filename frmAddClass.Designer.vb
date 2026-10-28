@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class frmAddClass
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -17,16 +17,15 @@ Partial Class frmAddClass
     'Required by the Windows Form Designer
     Private components As System.ComponentModel.IContainer
 
-    'NOTE: The following procedure is required by the Windows Form Designer
+    'NOTE: The following procedure is required by the Windows Form Designer.
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Panel1 = New Panel()
         Label1 = New Label()
-        Label2 = New Label()
         Panel2 = New Panel()
-        Panel4 = New Panel()
+        Label2 = New Label()
         Panel3 = New Panel()
         txtCode = New TextBox()
         txtName = New TextBox()
@@ -36,8 +35,8 @@ Partial Class frmAddClass
         lblSection = New Label()
         lblrpof = New Label()
         lblName = New Label()
-        btnsave = New Button()
-        btncancel = New Button()
+        btnsave = New CustomButton()
+        btncancel = New CustomButton()
         lblerror = New Label()
         Panel1.SuspendLayout()
         Panel2.SuspendLayout()
@@ -50,173 +49,161 @@ Partial Class frmAddClass
         Panel1.Dock = DockStyle.Top
         Panel1.Location = New Point(0, 0)
         Panel1.Name = "Panel1"
-        Panel1.Size = New Size(444, 32)
+        Panel1.Size = New Size(420, 44)
         Panel1.TabIndex = 0
         ' 
         ' Label1
         ' 
         Label1.AutoSize = True
-        Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label1.Font = New Font("Segoe UI", 10.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.White
-        Label1.Location = New Point(11, 8)
+        Label1.Location = New Point(16, 12)
         Label1.Name = "Label1"
-        Label1.Size = New Size(223, 17)
+        Label1.Size = New Size(223, 19)
         Label1.TabIndex = 0
         Label1.Text = "Dauntless Wolves' Grading System"
-        ' 
-        ' Label2
-        ' 
-        Label2.Font = New Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.DarkGreen
-        Label2.Location = New Point(3, 4)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(122, 27)
-        Label2.TabIndex = 0
-        Label2.Text = "Quick Actions"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
         ' 
         ' Panel2
         ' 
         Panel2.BackColor = Color.Honeydew
-        Panel2.Controls.Add(Panel4)
         Panel2.Controls.Add(Label2)
         Panel2.Dock = DockStyle.Top
-        Panel2.Location = New Point(0, 32)
+        Panel2.Location = New Point(0, 44)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(444, 34)
+        Panel2.Size = New Size(420, 40)
         Panel2.TabIndex = 3
         ' 
-        ' Panel4
+        ' Label2
         ' 
-        Panel4.Location = New Point(0, 34)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(446, 334)
-        Panel4.TabIndex = 0
+        Label2.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        Label2.ForeColor = Color.DarkGreen
+        Label2.Location = New Point(16, 0)
+        Label2.Name = "Label2"
+        Label2.Size = New Size(200, 40)
+        Label2.TabIndex = 0
+        Label2.Text = "Add Class / Subject"
+        Label2.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' Panel3
         ' 
         Panel3.BackColor = Color.DarkGreen
         Panel3.Dock = DockStyle.Bottom
-        Panel3.Location = New Point(0, 399)
+        Panel3.Location = New Point(0, 540)
         Panel3.Name = "Panel3"
-        Panel3.Size = New Size(444, 32)
+        Panel3.Size = New Size(420, 12)
         Panel3.TabIndex = 5
         ' 
-        ' txtCode
-        ' 
-        txtCode.Location = New Point(82, 119)
-        txtCode.Name = "txtCode"
-        txtCode.Size = New Size(274, 23)
-        txtCode.TabIndex = 6
-        ' 
-        ' txtName
-        ' 
-        txtName.Location = New Point(82, 179)
-        txtName.Name = "txtName"
-        txtName.Size = New Size(275, 23)
-        txtName.TabIndex = 7
-        ' 
-        ' txtSection
-        ' 
-        txtSection.Location = New Point(81, 233)
-        txtSection.Name = "txtSection"
-        txtSection.Size = New Size(274, 23)
-        txtSection.TabIndex = 8
-        ' 
-        ' cboProfessor
-        ' 
-        cboProfessor.DropDownStyle = ComboBoxStyle.DropDownList
-        cboProfessor.FormattingEnabled = True
-        cboProfessor.Location = New Point(81, 297)
-        cboProfessor.Name = "cboProfessor"
-        cboProfessor.Size = New Size(275, 23)
-        cboProfessor.TabIndex = 9
-        ' 
-        ' lblCode
+        ' Field labels (consistent left margin + rhythm)
         ' 
         lblCode.AutoSize = True
-        lblCode.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblCode.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblCode.ForeColor = Color.DarkGreen
-        lblCode.Location = New Point(82, 100)
+        lblCode.Location = New Point(32, 104)
         lblCode.Name = "lblCode"
         lblCode.Size = New Size(77, 15)
         lblCode.TabIndex = 10
         lblCode.Text = "Subject Code"
         ' 
-        ' lblSection
+        ' txtCode
         ' 
-        lblSection.AutoSize = True
-        lblSection.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblSection.ForeColor = Color.DarkGreen
-        lblSection.Location = New Point(82, 217)
-        lblSection.Name = "lblSection"
-        lblSection.Size = New Size(47, 15)
-        lblSection.TabIndex = 11
-        lblSection.Text = "Section"
-        ' 
-        ' lblrpof
-        ' 
-        lblrpof.AutoSize = True
-        lblrpof.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        lblrpof.ForeColor = Color.DarkGreen
-        lblrpof.Location = New Point(79, 280)
-        lblrpof.Name = "lblrpof"
-        lblrpof.Size = New Size(77, 15)
-        lblrpof.TabIndex = 12
-        lblrpof.Text = "Professor"
+        txtCode.Location = New Point(32, 123)
+        txtCode.Name = "txtCode"
+        txtCode.Size = New Size(356, 23)
+        txtCode.TabIndex = 6
         ' 
         ' lblName
         ' 
         lblName.AutoSize = True
-        lblName.Font = New Font("Segoe UI Semibold", 9F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblName.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         lblName.ForeColor = Color.DarkGreen
-        lblName.Location = New Point(81, 161)
+        lblName.Location = New Point(32, 156)
         lblName.Name = "lblName"
         lblName.Size = New Size(82, 15)
         lblName.TabIndex = 13
         lblName.Text = "Subject Name"
         ' 
-        ' btnsave
+        ' txtName
         ' 
-        btnsave.BackColor = Color.DarkGreen
-        btnsave.DialogResult = DialogResult.None
-        btnsave.FlatStyle = FlatStyle.Flat
-        btnsave.ForeColor = Color.White
-        btnsave.Location = New Point(258, 357)
-        btnsave.Name = "btnsave"
-        btnsave.Size = New Size(75, 23)
-        btnsave.TabIndex = 14
-        btnsave.Text = "Save"
-        btnsave.UseVisualStyleBackColor = False
+        txtName.Location = New Point(32, 175)
+        txtName.Name = "txtName"
+        txtName.Size = New Size(356, 23)
+        txtName.TabIndex = 7
         ' 
-        ' btncancel
+        ' lblSection
         ' 
-        btncancel.DialogResult = DialogResult.Cancel
-        btncancel.FlatStyle = FlatStyle.Flat
-        btncancel.Location = New Point(347, 358)
-        btncancel.Name = "btncancel"
-        btncancel.Size = New Size(75, 23)
-        btncancel.TabIndex = 15
-        btncancel.Text = "Cancel"
-        btncancel.UseVisualStyleBackColor = True
+        lblSection.AutoSize = True
+        lblSection.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblSection.ForeColor = Color.DarkGreen
+        lblSection.Location = New Point(32, 208)
+        lblSection.Name = "lblSection"
+        lblSection.Size = New Size(47, 15)
+        lblSection.TabIndex = 11
+        lblSection.Text = "Section"
+        ' 
+        ' txtSection
+        ' 
+        txtSection.Location = New Point(32, 227)
+        txtSection.Name = "txtSection"
+        txtSection.Size = New Size(356, 23)
+        txtSection.TabIndex = 8
+        ' 
+        ' lblrpof
+        ' 
+        lblrpof.AutoSize = True
+        lblrpof.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblrpof.ForeColor = Color.DarkGreen
+        lblrpof.Location = New Point(32, 260)
+        lblrpof.Name = "lblrpof"
+        lblrpof.Size = New Size(64, 15)
+        lblrpof.TabIndex = 12
+        lblrpof.Text = "Professor"
+        ' 
+        ' cboProfessor
+        ' 
+        cboProfessor.DropDownStyle = ComboBoxStyle.DropDownList
+        cboProfessor.FormattingEnabled = True
+        cboProfessor.Location = New Point(32, 279)
+        cboProfessor.Name = "cboProfessor"
+        cboProfessor.Size = New Size(356, 23)
+        cboProfessor.TabIndex = 9
         ' 
         ' lblerror
         ' 
-        lblerror.BackColor = Color.WhiteSmoke
-        lblerror.ForeColor = Color.Red
-        lblerror.Location = New Point(215, 360)
+        lblerror.AutoSize = True
+        lblerror.ForeColor = Color.Firebrick
+        lblerror.Location = New Point(32, 504)
         lblerror.Name = "lblerror"
-        lblerror.Size = New Size(34, 23)
+        lblerror.Size = New Size(34, 15)
         lblerror.TabIndex = 16
         lblerror.Text = "Error"
         lblerror.Visible = False
         ' 
+        ' btnsave
+        ' 
+        btnsave.DialogResult = DialogResult.None
+        btnsave.Location = New Point(193, 470)
+        btnsave.Name = "btnsave"
+        btnsave.Size = New Size(96, 34)
+        btnsave.TabIndex = 14
+        btnsave.Text = "Save"
+        ' 
+        ' btncancel
+        ' 
+        btncancel.DialogResult = DialogResult.Cancel
+        btncancel.Location = New Point(297, 470)
+        btncancel.Name = "btncancel"
+        btncancel.Size = New Size(96, 34)
+        btncancel.TabIndex = 15
+        btncancel.Text = "Cancel"
+        ' 
         ' frmAddClass
         ' 
+        AcceptButton = btnsave
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         BackColor = Color.WhiteSmoke
-        ClientSize = New Size(444, 431)
+        CancelButton = btncancel
+        ClientSize = New Size(420, 552)
         Controls.Add(lblerror)
         Controls.Add(btncancel)
         Controls.Add(btnsave)
@@ -249,7 +236,6 @@ Partial Class frmAddClass
     Friend WithEvents Label2 As Label
     Friend WithEvents Panel2 As Panel
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents Panel4 As Panel
     Friend WithEvents txtCode As TextBox
     Friend WithEvents txtName As TextBox
     Friend WithEvents txtSection As TextBox
@@ -258,7 +244,7 @@ Partial Class frmAddClass
     Friend WithEvents lblSection As Label
     Friend WithEvents lblrpof As Label
     Friend WithEvents lblName As Label
-    Friend WithEvents btnsave As Button
-    Friend WithEvents btncancel As Button
+    Friend WithEvents btnsave As CustomButton
+    Friend WithEvents btncancel As CustomButton
     Friend WithEvents lblerror As Label
 End Class

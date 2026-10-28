@@ -26,7 +26,7 @@ Partial Class frmlogin
         Label1 = New Label()
         Panel2 = New Panel()
         cardlogin = New CustomPanel()
-        Button1 = New Button()
+        Button1 = New CustomButton()
         boxRole = New CustomPanel()
         RadioButton2 = New RadioButton()
         RadioButton1 = New RadioButton()
@@ -222,8 +222,7 @@ Partial Class frmlogin
         ' 
         AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
-        BackgroundImage = My.Resources.Resources.images__1_1
-        BackgroundImageLayout = ImageLayout.Stretch
+        BackColor = SystemColors.Control
         ClientSize = New Size(1264, 681)
         Controls.Add(cardlogin)
         Controls.Add(Panel2)
@@ -259,5 +258,5 @@ Partial Class frmlogin
     Friend WithEvents boxRole As CustomPanel
     Friend WithEvents RadioButton2 As RadioButton
     Friend WithEvents RadioButton1 As RadioButton
-    Friend WithEvents Button1 As Button
+    Friend WithEvents Button1 As CustomButton
 End Class

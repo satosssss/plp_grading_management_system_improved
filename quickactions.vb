@@ -14,6 +14,8 @@ Public Class quickactions
     Private _currentMode As FormMode = FormMode.EnterGrades
 
     Private Sub quickactions_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        ApplyQuickActionsTheme()
+
         ' Safely attach click listener to close button without requiring designer WithEvents
         Dim btn = FindControl(Of Button)("btnClose")
         If btn Is Nothing Then btn = FindControl(Of Button)("btnCancel")
@@ -21,6 +23,30 @@ Public Class quickactions
             RemoveHandler btn.Click, AddressOf CloseForm
             AddHandler btn.Click, AddressOf CloseForm
         End If
+    End Sub
+
+    Private Sub ApplyQuickActionsTheme()
+        Theme.StyleForm(Me)
+        Panel1.BackColor = Theme.Primary
+        Panel2.BackColor = Theme.PrimarySoft
+        Panel3.BackColor = Theme.Primary
+        Label1.ForeColor = Theme.TextOnPrimary
+        lblHeader.ForeColor = Theme.Primary
+
+        For Each lbl As Label In {lblStudent, lblSubject, lblAssessment, lblGrade}
+            lbl.ForeColor = Theme.TextSecondary
+            lbl.Font = Theme.FontCaption
+        Next
+        For Each cbo As ComboBox In {cboStudent, cboSubject, cboAssessment}
+            Theme.StyleCombo(cbo)
+        Next
+        Theme.StyleInput(txtGrade)
+        Theme.StylePrimaryButton(btnPrimary)
+
+        Theme.StyleGrid(dgvrequests)
+        Theme.StyleGrid(dgvLogs)
+        dgvrequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
+        dgvLogs.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
     End Sub
 
     Private Sub CloseForm(sender As Object, e As EventArgs)

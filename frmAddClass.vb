@@ -18,28 +18,56 @@ Public Class frmAddClass
             Close()
             Return
         End If
+        ApplyAddClassTheme()
         ConfigureOfferingFields()
         LoadProfessorsFromDb()
     End Sub
 
+    Private Sub ApplyAddClassTheme()
+        Theme.StyleForm(Me)
+        Panel1.BackColor = Theme.Primary
+        Panel2.BackColor = Theme.PrimarySoft
+        Panel3.BackColor = Theme.Primary
+        Label1.ForeColor = Theme.TextOnPrimary
+        Label2.ForeColor = Theme.Primary
+        For Each lbl As Label In {lblCode, lblName, lblSection, lblrpof}
+            lbl.ForeColor = Theme.TextSecondary
+            lbl.Font = Theme.FontCaption
+        Next
+        For Each tb As TextBox In {txtCode, txtName, txtSection}
+            Theme.StyleInput(tb)
+        Next
+        Theme.StyleCombo(cboProfessor)
+        Theme.StylePrimaryButton(btnsave)
+        Theme.StyleSecondaryButton(btncancel)
+        lblerror.ForeColor = Theme.Danger
+    End Sub
+
+    ' Adds the semester / academic-year fields below the professor picker and
+    ' repositions the footer buttons to sit under them.
     Private Sub ConfigureOfferingFields()
         Dim defaults = ClassService.GetDefaultTerm()
         semesterPicker.Items.AddRange({"1st Semester", "2nd Semester"})
         semesterPicker.SelectedItem = defaults.Semester
         academicYearInput.Text = defaults.AcademicYear
-        Dim fields As New TableLayoutPanel With {.Location = New Point(79, 345), .Size = New Size(343, 63), .ColumnCount = 2, .RowCount = 2}
-        fields.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 54))
-        fields.ColumnStyles.Add(New ColumnStyle(SizeType.Percent, 46))
-        fields.RowStyles.Add(New RowStyle(SizeType.Absolute, 24))
-        fields.RowStyles.Add(New RowStyle(SizeType.Percent, 100))
-        fields.Controls.Add(New Label With {.Text = "Semester", .ForeColor = Color.DarkGreen, .Dock = DockStyle.Fill}, 0, 0)
-        fields.Controls.Add(New Label With {.Text = "Academic year", .ForeColor = Color.DarkGreen, .Dock = DockStyle.Fill}, 1, 0)
-        semesterPicker.Dock = DockStyle.Top : academicYearInput.Dock = DockStyle.Top
-        fields.Controls.Add(semesterPicker, 0, 1) : fields.Controls.Add(academicYearInput, 1, 1)
-        Controls.Add(fields)
-        btnsave.Top = 426 : btncancel.Top = 426
-        ClientSize = New Size(ClientSize.Width, 490)
+
+        Dim top As Integer = cboProfessor.Bottom + 24
+        Dim lblSem As New Label With {.Text = "Semester", .ForeColor = Theme.TextSecondary,
+            .Font = Theme.FontCaption, .AutoSize = True, .Location = New Point(32, top)}
+        Dim lblYear As New Label With {.Text = "Academic year", .ForeColor = Theme.TextSecondary,
+            .Font = Theme.FontCaption, .AutoSize = True, .Location = New Point(224, top)}
+        Theme.StyleCombo(semesterPicker)
+        Theme.StyleInput(academicYearInput)
+        semesterPicker.SetBounds(32, top + 19, 180, 23)
+        academicYearInput.SetBounds(224, top + 19, 164, 23)
+
+        btnsave.Top = academicYearInput.Bottom + 24
+        btncancel.Top = btnsave.Top
+        lblerror.Top = btnsave.Bottom + 8
+        ClientSize = New Size(ClientSize.Width, lblerror.Bottom + 20)
         Text = "The Dauntless Grading System — Add Class"
+
+        Controls.AddRange(New Control() {lblSem, lblYear, semesterPicker, academicYearInput})
     End Sub
 
     ''' <summary>

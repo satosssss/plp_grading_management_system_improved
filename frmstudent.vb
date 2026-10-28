@@ -81,6 +81,14 @@ Public Class frmStudent
         StyleGrid(dgvHistory)
         StyleGrid(dgvRequests)
 
+        ApplyStudentTheme()
+        btnSubmitRequest.FlatStyle = FlatStyle.Flat
+        btnSubmitRequest.FlatAppearance.BorderSize = 0
+        btnSubmitRequest.BackColor = Theme.Primary
+        btnSubmitRequest.ForeColor = Theme.TextOnPrimary
+        btnSubmitRequest.Font = Theme.FontButton
+        btnSubmitRequest.Cursor = Cursors.Hand
+
         ' 4. Populate Dynamic Data from MariaDB
         LoadEnrolledCourses()
         LoadHistory()
@@ -410,24 +418,56 @@ Public Class frmStudent
             .ReadOnly = True
             .RowHeadersVisible = False
             .BorderStyle = BorderStyle.None
-            .BackgroundColor = Color.White
+            .BackgroundColor = Theme.Surface
+            .GridColor = Theme.GridLine
+            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
+            .SelectionMode = DataGridViewSelectionMode.FullRowSelect
+
             .EnableHeadersVisualStyles = False
-            .ColumnHeadersDefaultCellStyle.BackColor = Color.FromArgb(208, 216, 224)
-            .ColumnHeadersDefaultCellStyle.ForeColor = Color.FromArgb(0, 85, 0)
-            .ColumnHeadersDefaultCellStyle.Font = New Font("Segoe UI", 10, FontStyle.Bold)
+            .ColumnHeadersDefaultCellStyle.BackColor = Theme.GridHeaderFill
+            .ColumnHeadersDefaultCellStyle.ForeColor = Theme.GridHeaderText
+            .ColumnHeadersDefaultCellStyle.Font = Theme.FontGridHeader
+            .ColumnHeadersDefaultCellStyle.SelectionBackColor = Theme.GridHeaderFill
+            .ColumnHeadersDefaultCellStyle.SelectionForeColor = Theme.GridHeaderText
             .ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .DefaultCellStyle.ForeColor = Color.FromArgb(0, 85, 0)
+
+            .DefaultCellStyle.ForeColor = Theme.TextPrimary
+            .DefaultCellStyle.Font = Theme.FontGridCell
+            .DefaultCellStyle.SelectionBackColor = Theme.AccentSoft
+            .DefaultCellStyle.SelectionForeColor = Theme.TextPrimary
             .DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter
-            .DefaultCellStyle.SelectionBackColor = Color.FromArgb(220, 232, 224)
-            .DefaultCellStyle.SelectionForeColor = Color.FromArgb(0, 85, 0)
+
+            .AlternatingRowsDefaultCellStyle.BackColor = Theme.SurfaceAlt
+            .AlternatingRowsDefaultCellStyle.SelectionBackColor = Theme.AccentSoft
+
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            .RowTemplate.Height = 40
-            .ColumnHeadersHeight = 40
+            .RowTemplate.Height = 36
+            .ColumnHeadersHeight = 42
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
             .AllowUserToResizeRows = False
-            .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-            .GridColor = Color.FromArgb(85, 85, 85)
         End With
+    End Sub
+
+    ' Apply the shared theme to the student chrome (header bars, nav, role pill).
+    Private Sub ApplyStudentTheme()
+        Theme.StyleForm(Me)
+        Me.BackColor = Theme.Background
+
+        Pnlheaderheader.BackColor = Theme.Primary
+        pnlheader.BackColor = Theme.Surface
+        Pnltabs.BackColor = Theme.Background
+        Pnlfooter.BackColor = Theme.Primary
+
+        lblstudentname.ForeColor = Theme.TextPrimary
+        lblstudentname.Font = Theme.FontCardTitle
+        Theme.StylePill(lblrole)
+
+        ' Nav buttons: flat ghost style; active state handled in ShowPage.
+        For Each b As Button In pages.Keys
+            Theme.StyleNavButton(b, False)
+        Next
+
+        Theme.StylePrimaryButton(btnChangePassword)
     End Sub
 
     ' ---------- DYNAMIC COURSE LOADER ----------

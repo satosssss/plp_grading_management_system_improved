@@ -52,13 +52,13 @@ Public Class frmGradebook
     Private maxScores As New Dictionary(Of String, Double) From {{"ExamRaw", 100}}
 
     ' ===== Look =====
-    Private ReadOnly DarkGreen As Color = Color.FromArgb(0, 100, 0)
-    Private ReadOnly LineColor As Color = Color.FromArgb(205, 218, 210)
+    Private ReadOnly DarkGreen As Color = Theme.Primary
+    Private ReadOnly LineColor As Color = Theme.Border
     Private ReadOnly InputColor As Color = Color.FromArgb(255, 251, 224)   ' soft yellow = type here
     Private ReadOnly CalcColor As Color = Color.FromArgb(235, 243, 250)    ' soft blue = computed
     Private ReadOnly TotalColor As Color = Color.FromArgb(226, 243, 233)   ' soft green = grade
-    Private ReadOnly CellFont As New Font("Segoe UI", 9.5F)
-    Private ReadOnly BoldFont As New Font("Segoe UI Semibold", 9.5F)
+    Private ReadOnly CellFont As Font = Theme.FontGridCell
+    Private ReadOnly BoldFont As Font = Theme.FontGridHeader
 
     Private lblSummary As New Label()
     Private lblMeetings As New Label()
@@ -172,25 +172,25 @@ Public Class frmGradebook
             .EnableHeadersVisualStyles = False
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
             .ColumnHeadersHeight = 56
-            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single
+            .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
             With .ColumnHeadersDefaultCellStyle
                 .BackColor = DarkGreen
                 .ForeColor = Color.White
-                .Font = New Font("Segoe UI Semibold", 8.5F)
+                .Font = BoldFont
                 .Alignment = DataGridViewContentAlignment.MiddleCenter
                 .WrapMode = DataGridViewTriState.True
                 .SelectionBackColor = DarkGreen
                 .SelectionForeColor = Color.White
             End With
 
-            .RowTemplate.Height = 28
+            .RowTemplate.Height = 30
             With .DefaultCellStyle
                 .BackColor = Color.White
-                .ForeColor = Color.FromArgb(30, 30, 30)
+                .ForeColor = Theme.TextPrimary
                 .Font = CellFont
                 .Alignment = DataGridViewContentAlignment.MiddleCenter
-                .SelectionBackColor = Color.FromArgb(190, 228, 205)
-                .SelectionForeColor = Color.Black
+                .SelectionBackColor = Theme.AccentSoft
+                .SelectionForeColor = Theme.TextPrimary
             End With
 
             ' Columns (same order as the gradesheet). Assessments are inserted before CWComp / QuizComp.
@@ -1657,21 +1657,31 @@ Public Class frmGradebook
     End Function
 
     Private Sub ConfigureToolbar()
-        Dim toolbar As New FlowLayoutPanel With {.Dock = DockStyle.Fill, .WrapContents = True, .AutoScroll = True, .Padding = New Padding(8), .BackColor = Color.White}
+        Theme.StyleForm(Me)
+        Panel1.BackColor = Theme.Primary
+        Panel2.BackColor = Theme.Surface
+        Label1.ForeColor = Theme.Primary
+        Label1.Font = Theme.FontSection
+        For Each b As CustomButton In {btnAddClass, btnAddStudent, btnAddAssessment, CustomButton1}
+            Theme.StyleSecondaryButton(b)
+        Next
+        Theme.StylePrimaryButton(CustomButton2)
+        Theme.StyleCombo(cboCourse)
+
+        Dim toolbar As New FlowLayoutPanel With {.Dock = DockStyle.Fill, .WrapContents = True, .AutoScroll = True, .Padding = New Padding(10, 8, 10, 8), .BackColor = Theme.Surface}
         Dim controls() As Control = {Label1, cboCourse, btnAddClass, btnAddStudent, btnAddAssessment, CustomButton2, CustomButton1}
         For Each control In controls
             control.Dock = DockStyle.None
             control.Anchor = AnchorStyles.Top Or AnchorStyles.Left
-            control.Margin = New Padding(4, 3, 4, 3)
-            control.Height = 26
+            control.Margin = New Padding(5, 4, 5, 4)
+            control.Height = 32
             If TypeOf control Is Button Then
-                control.Font = New Font("Segoe UI", 9)
-                control.Width = TextRenderer.MeasureText(control.Text, control.Font).Width + 20
+                control.Width = TextRenderer.MeasureText(control.Text, control.Font).Width + 30
             End If
             toolbar.Controls.Add(control)
         Next
-        Label1.Font = New Font("Segoe UI", 12, FontStyle.Bold)
-        Label1.Width = 180
+        Label1.Font = Theme.FontSection
+        Label1.Width = 200
         cboCourse.Width = 190
         lblMeetings.Visible = False
         txtMeetings.Visible = False

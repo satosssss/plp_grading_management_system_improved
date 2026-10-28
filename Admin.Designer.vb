@@ -47,7 +47,6 @@ Partial Class Admin
         btnAddProf = New CustomButton()
         cboDeptProf = New ComboBox()
         txtSearchProf = New TextBox()
-        CustomPanel7 = New CustomPanel()
         pnlDashboard = New Panel()
         cardDashboard = New CustomPanel()
         tlpDashBottom = New TableLayoutPanel()
@@ -318,7 +317,6 @@ Partial Class Admin
         ' 
         pnlProfessors.BackColor = Color.White
         pnlProfessors.Controls.Add(pnlProfCard)
-        pnlProfessors.Controls.Add(CustomPanel7)
         pnlProfessors.Dock = DockStyle.Fill
         pnlProfessors.Location = New Point(0, 0)
         pnlProfessors.Margin = New Padding(3, 2, 3, 2)
@@ -434,16 +432,6 @@ Partial Class Admin
         txtSearchProf.Name = "txtSearchProf"
         txtSearchProf.Size = New Size(228, 23)
         txtSearchProf.TabIndex = 0
-        ' 
-        ' CustomPanel7
-        ' 
-        CustomPanel7.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        CustomPanel7.BackColor = Color.White
-        CustomPanel7.BorderColor = Color.FromArgb(CByte(0), CByte(85), CByte(0))
-        CustomPanel7.Location = New Point(8, 16)
-        CustomPanel7.Name = "CustomPanel7"
-        CustomPanel7.Size = New Size(1351, 588)
-        CustomPanel7.TabIndex = 1
         ' 
         ' pnlDashboard
         ' 
@@ -1056,7 +1044,7 @@ Partial Class Admin
         Label4.AutoSize = True
         Label4.Font = New Font("Segoe UI", 8F)
         Label4.ForeColor = Color.DarkGreen
-        Label4.Location = New Point(335, -3)
+        Label4.Location = New Point(335, 6)
         Label4.Name = "Label4"
         Label4.Size = New Size(45, 13)
         Label4.TabIndex = 4
@@ -1067,7 +1055,7 @@ Partial Class Admin
         Label3.AutoSize = True
         Label3.Font = New Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, CByte(0))
         Label3.ForeColor = Color.DarkGreen
-        Label3.Location = New Point(201, -3)
+        Label3.Location = New Point(201, 6)
         Label3.Name = "Label3"
         Label3.Size = New Size(53, 13)
         Label3.TabIndex = 3
@@ -1245,5 +1233,4 @@ Partial Class Admin
     Friend WithEvents btnViewRequests As CustomButton
     Friend WithEvents btnViewLogs As CustomButton
     Friend WithEvents Panel3 As Panel
-    Friend WithEvents CustomPanel7 As CustomPanel
 End Class

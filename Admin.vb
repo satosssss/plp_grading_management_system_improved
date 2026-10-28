@@ -54,6 +54,7 @@ Partial Public Class Admin
         ' Displays actual full name from session
         lblAdminName.Text = AppSession.CurrentUser.FullName
 
+        ApplyAdminTheme()
         ShowPanel(pnlDashboard, btnDashboard)
         InitProfessorPage()
         InitStudentPage()
@@ -76,11 +77,54 @@ Partial Public Class Admin
             Dim isActive As Boolean = (b Is activeBtn)
             ' Fix: Update NormalColor on CustomButtons so hover doesn't wipe out active color
             If TypeOf b Is CustomButton Then
-                DirectCast(b, CustomButton).NormalColor = If(isActive, Color.White, Color.FromArgb(200, 215, 205))
+                Dim cb = DirectCast(b, CustomButton)
+                If isActive Then
+                    Theme.StylePrimaryButton(cb)
+                Else
+                    Theme.StyleGhostButton(cb)
+                End If
             Else
-                b.BackColor = If(isActive, Color.White, Color.FromArgb(200, 215, 205))
+                Theme.StyleNavButton(b, isActive)
             End If
-            b.Font = New Font(b.Font, If(isActive, FontStyle.Bold, FontStyle.Regular))
+        Next
+    End Sub
+
+    ' Apply the shared theme to the Admin chrome (header bars, user strip, tabs, footer).
+    Private Sub ApplyAdminTheme()
+        Theme.StyleForm(Me)
+        Me.BackColor = Theme.Background
+
+        pnlTitle.BackColor = Theme.Primary
+        Label1.ForeColor = Theme.TextOnPrimary
+        Label1.Font = Theme.FontBodyBold
+
+        pnlUser.BackColor = Theme.Surface
+        lblAdminName.ForeColor = Theme.TextPrimary
+        lblAdminName.Font = Theme.FontCardTitle
+        Theme.StylePill(lblRole)
+        Theme.StylePrimaryButton(btnLogout)
+
+        pnlTabs.BackColor = Theme.Background
+        pnlFooter.BackColor = Theme.Primary
+
+        ' Dashboard stat cards + quick-action tiles
+        For Each card As CustomPanel In {CustomPanel2, CustomPanel3, CustomPanel4, CustomPanel5}
+            Theme.StyleAccentCard(card, 12)
+        Next
+        Theme.StyleCard(cardDashboard, 12)
+        Theme.StyleCard(CustomPanel6, 12)
+
+        ' Quick-action buttons
+        Theme.StylePrimaryButton(btnAddClass)
+        For Each b As CustomButton In {btnEnterGrades, btnViewRequests, btnViewLogs}
+            Theme.StyleSecondaryButton(b)
+        Next
+
+        ' Page cards + toolbars
+        Theme.StyleCard(pnlstudentcard, 12)
+        For Each lbl As Label In {Label6, Label7, Label8, Label9, lblStatStudents, lblStatProfs, lblStatClasses, lblStatPending}
+            lbl.Font = Theme.FontPageTitle
+            lbl.ForeColor = Theme.Primary
         Next
     End Sub
 
@@ -118,39 +162,39 @@ Partial Public Class Admin
     End Sub
 
     Private Sub SetupProfGrid()
-        Dim headerColor As Color = Color.FromArgb(224, 247, 250)
+        Dim headerColor As Color = Theme.GridHeaderFill
 
         With dgvProf
             .AllowUserToAddRows = False
             .AllowUserToDeleteRows = False
             .AllowUserToResizeRows = False
             .RowHeadersVisible = False
-            .BackgroundColor = Color.White
+            .BackgroundColor = Theme.Surface
             .BorderStyle = BorderStyle.None
             .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-            .GridColor = Color.Gainsboro
+            .GridColor = Theme.GridLine
             .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            .RowTemplate.Height = 36
+            .RowTemplate.Height = 38
 
             .EnableHeadersVisualStyles = False
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            .ColumnHeadersHeight = 32
+            .ColumnHeadersHeight = 42
             .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
             With .ColumnHeadersDefaultCellStyle
                 .BackColor = headerColor
-                .ForeColor = Color.FromArgb(0, 80, 0)
-                .Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                .ForeColor = Theme.GridHeaderText
+                .Font = Theme.FontGridHeader
                 .SelectionBackColor = headerColor
-                .SelectionForeColor = Color.FromArgb(0, 80, 0)
+                .SelectionForeColor = Theme.GridHeaderText
             End With
 
             With .DefaultCellStyle
-                .BackColor = Color.White
-                .ForeColor = Color.Black
-                .Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                .SelectionBackColor = Color.FromArgb(235, 250, 240)
-                .SelectionForeColor = Color.Black
+                .BackColor = Theme.Surface
+                .ForeColor = Theme.TextPrimary
+                .Font = Theme.FontGridCell
+                .SelectionBackColor = Theme.AccentSoft
+                .SelectionForeColor = Theme.TextPrimary
             End With
 
             .Columns.Clear()
@@ -510,39 +554,39 @@ Partial Public Class Admin
     End Sub
 
     Private Sub SetupStudentGrid()
-        Dim headerColor As Color = Color.FromArgb(224, 247, 250)
+        Dim headerColor As Color = Theme.GridHeaderFill
 
         With dgvstudents
             .AllowUserToAddRows = False
             .AllowUserToDeleteRows = False
             .AllowUserToResizeRows = False
             .RowHeadersVisible = False
-            .BackgroundColor = Color.White
+            .BackgroundColor = Theme.Surface
             .BorderStyle = BorderStyle.None
             .CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal
-            .GridColor = Color.Gainsboro
+            .GridColor = Theme.GridLine
             .SelectionMode = DataGridViewSelectionMode.FullRowSelect
             .AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill
-            .RowTemplate.Height = 36
+            .RowTemplate.Height = 38
 
             .EnableHeadersVisualStyles = False
             .ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing
-            .ColumnHeadersHeight = 32
+            .ColumnHeadersHeight = 42
             .ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None
             With .ColumnHeadersDefaultCellStyle
                 .BackColor = headerColor
-                .ForeColor = Color.FromArgb(0, 80, 0)
-                .Font = New Font("Segoe UI", 9, FontStyle.Bold)
+                .ForeColor = Theme.GridHeaderText
+                .Font = Theme.FontGridHeader
                 .SelectionBackColor = headerColor
-                .SelectionForeColor = Color.FromArgb(0, 80, 0)
+                .SelectionForeColor = Theme.GridHeaderText
             End With
 
             With .DefaultCellStyle
-                .BackColor = Color.White
-                .ForeColor = Color.Black
-                .Font = New Font("Segoe UI", 9, FontStyle.Bold)
-                .SelectionBackColor = Color.FromArgb(235, 250, 240)
-                .SelectionForeColor = Color.Black
+                .BackColor = Theme.Surface
+                .ForeColor = Theme.TextPrimary
+                .Font = Theme.FontGridCell
+                .SelectionBackColor = Theme.AccentSoft
+                .SelectionForeColor = Theme.TextPrimary
             End With
 
             .Columns.Clear()

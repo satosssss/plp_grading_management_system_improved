@@ -23,12 +23,11 @@ Partial Class quickactions
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Panel2 = New Panel()
-        Panel4 = New Panel()
-        Label2 = New Label()
+        lblHeader = New Label()
         Panel1 = New Panel()
         Label1 = New Label()
         Panel3 = New Panel()
-        btnPrimary = New Button()
+        btnPrimary = New CustomButton()
         pnlGrades = New Panel()
         cboSubject = New ComboBox()
         cboStudent = New ComboBox()
@@ -55,31 +54,23 @@ Partial Class quickactions
         ' Panel2
         ' 
         Panel2.BackColor = Color.Honeydew
-        Panel2.Controls.Add(Panel4)
-        Panel2.Controls.Add(Label2)
+        Panel2.Controls.Add(lblHeader)
         Panel2.Dock = DockStyle.Top
         Panel2.Location = New Point(0, 32)
         Panel2.Name = "Panel2"
-        Panel2.Size = New Size(444, 34)
+        Panel2.Size = New Size(444, 40)
         Panel2.TabIndex = 5
         ' 
-        ' Panel4
+        ' lblHeader
         ' 
-        Panel4.Location = New Point(0, 34)
-        Panel4.Name = "Panel4"
-        Panel4.Size = New Size(446, 334)
-        Panel4.TabIndex = 0
-        ' 
-        ' Label2
-        ' 
-        Label2.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
-        Label2.ForeColor = Color.DarkGreen
-        Label2.Location = New Point(3, 4)
-        Label2.Name = "Label2"
-        Label2.Size = New Size(122, 27)
-        Label2.TabIndex = 0
-        Label2.Text = "Quick Actions"
-        Label2.TextAlign = ContentAlignment.MiddleCenter
+        lblHeader.Font = New Font("Segoe UI", 9.0F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
+        lblHeader.ForeColor = Color.DarkGreen
+        lblHeader.Location = New Point(16, 0)
+        lblHeader.Name = "lblHeader"
+        lblHeader.Size = New Size(300, 40)
+        lblHeader.TabIndex = 0
+        lblHeader.Text = "Quick Actions"
+        lblHeader.TextAlign = ContentAlignment.MiddleLeft
         ' 
         ' Panel1
         ' 
@@ -96,7 +87,7 @@ Partial Class quickactions
         Label1.AutoSize = True
         Label1.Font = New Font("Segoe UI", 9.75F, FontStyle.Bold, GraphicsUnit.Point, CByte(0))
         Label1.ForeColor = Color.White
-        Label1.Location = New Point(11, 8)
+        Label1.Location = New Point(11, 7)
         Label1.Name = "Label1"
         Label1.Size = New Size(223, 17)
         Label1.TabIndex = 0
@@ -115,12 +106,11 @@ Partial Class quickactions
         ' btnPrimary
         ' 
         btnPrimary.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
-        btnPrimary.Location = New Point(357, 8)
+        btnPrimary.Location = New Point(336, 6)
         btnPrimary.Name = "btnPrimary"
-        btnPrimary.Size = New Size(75, 23)
+        btnPrimary.Size = New Size(96, 30)
         btnPrimary.TabIndex = 24
         btnPrimary.Text = "Save"
-        btnPrimary.UseVisualStyleBackColor = True
         ' 
         ' pnlGrades
         ' 
@@ -274,7 +264,7 @@ Partial Class quickactions
         MinimizeBox = False
         Name = "quickactions"
         StartPosition = FormStartPosition.CenterScreen
-        Text = "quickactions"
+        Text = "The Dauntless Grading System — Quick Actions"
         Panel2.ResumeLayout(False)
         Panel1.ResumeLayout(False)
         Panel1.PerformLayout()
@@ -289,8 +279,7 @@ Partial Class quickactions
     End Sub
 
     Friend WithEvents Panel2 As Panel
-    Friend WithEvents Panel4 As Panel
-    Friend WithEvents Label2 As Label
+    Friend WithEvents lblHeader As Label
     Friend WithEvents Panel1 As Panel
     Friend WithEvents Label1 As Label
     Friend WithEvents Panel3 As Panel
@@ -300,12 +289,10 @@ Partial Class quickactions
     Friend WithEvents cboSubject As ComboBox
     Friend WithEvents cboStudent As ComboBox
     Friend WithEvents lblSubject As Label
-    Friend WithEvents lblrpof As Label
     Friend WithEvents lblGrade As Label
     Friend WithEvents lblStudent As Label
-    Friend WithEvents cboProfessor As ComboBox
     Friend WithEvents txtGrade As TextBox
-    Friend WithEvents btnPrimary As Button
+    Friend WithEvents btnPrimary As CustomButton
     Friend WithEvents dgvrequests As DataGridView
     Friend WithEvents dgvLogs As DataGridView
     Friend WithEvents cboAssessment As ComboBox

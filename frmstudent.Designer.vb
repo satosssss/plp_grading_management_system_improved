@@ -341,6 +341,7 @@ Partial Class frmstudent
         cardSubmit.Margin = New Padding(10)
         cardSubmit.Name = "cardSubmit"
         cardSubmit.Padding = New Padding(14)
+        cardSubmit.AutoScroll = True
         cardSubmit.Size = New Size(549, 328)
         cardSubmit.TabIndex = 0
         ' 

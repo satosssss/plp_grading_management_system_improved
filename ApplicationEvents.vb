@@ -25,5 +25,13 @@ Namespace My
 
     Partial Friend Class MyApplication
 
+        ' Modernize rendering: PerMonitorV2 makes the app DPI-aware so text stays
+        ' crisp at 125%/150% scaling instead of being bitmap-stretched (blurry).
+        Private Sub MyApplication_ApplyApplicationDefaults(sender As Object,
+                e As ApplyApplicationDefaultsEventArgs) Handles Me.ApplyApplicationDefaults
+
+            e.HighDpiMode = HighDpiMode.PerMonitorV2
+        End Sub
+
     End Class
 End Namespace

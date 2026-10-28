@@ -12,27 +12,68 @@ Public Class frmlogin
         ' Mask password characters in TextBox1
         TextBox1.UseSystemPasswordChar = True
 
-        ' Apply background opacity effect
-        If Me.BackgroundImage IsNot Nothing Then
-            Dim original As Image = Me.BackgroundImage
-            Me.BackgroundImage = FadeImage(original, 0.5F)
-        End If
+        ApplyLoginTheme()
+        CenterCard()
     End Sub
 
-    ' Opacity helper
-    Private Function FadeImage(src As Image, opacity As Single) As Image
-        Dim bmp As New Bitmap(src.Width, src.Height)
-        Using g As Graphics = Graphics.FromImage(bmp)
-            g.Clear(Color.White)
-            Dim cm As New Imaging.ColorMatrix() With {.Matrix33 = opacity}
-            Using ia As New Imaging.ImageAttributes()
-                ia.SetColorMatrix(cm)
-                g.DrawImage(src, New Rectangle(0, 0, bmp.Width, bmp.Height),
-                        0, 0, src.Width, src.Height, GraphicsUnit.Pixel, ia)
-            End Using
-        End Using
-        Return bmp
-    End Function
+    ' Keep the login card centered whenever the window is resized.
+    Private Sub frmLogin_Resize(sender As Object, e As EventArgs) Handles MyBase.Resize
+        CenterCard()
+    End Sub
+
+    Private Sub CenterCard()
+        cardlogin.Left = (ClientSize.Width - cardlogin.Width) \ 2
+        cardlogin.Top = ((ClientSize.Height - Panel1.Height - Panel2.Height - cardlogin.Height) \ 2) + Panel1.Height
+        If cardlogin.Top < Panel1.Height + 12 Then cardlogin.Top = Panel1.Height + 12
+    End Sub
+
+    Private Sub ApplyLoginTheme()
+        Theme.StyleForm(Me)
+
+        ' Top / bottom brand bars
+        Panel1.BackColor = Theme.Primary
+        Panel2.BackColor = Theme.Primary
+        Label1.ForeColor = Theme.TextOnPrimary
+        Label1.Font = Theme.FontCardTitle
+
+        ' Card
+        Theme.StyleCard(cardlogin, 16)
+        cardlogin.ClipCorners = True
+
+        ' Field captions
+        For Each lbl As Label In {Label2, Label3}
+            lbl.ForeColor = Theme.TextSecondary
+            lbl.Font = Theme.FontCaption
+        Next
+
+        ' Inputs: white rounded box containing a borderless textbox
+        For Each box As CustomPanel In {CustomPanel1, boxPass}
+            box.BackColor = Theme.InputFill
+            box.BorderColor = Theme.InputBorder
+            box.BorderThickness = 1
+            box.CornerRadius = 10
+        Next
+        For Each tb As TextBox In {boxuser, TextBox1}
+            tb.Font = Theme.FontInput
+            tb.ForeColor = Theme.TextPrimary
+            tb.BackColor = Theme.InputFill
+        Next
+
+        ' Role selector
+        boxRole.BackColor = Theme.Surface
+        boxRole.BorderColor = Theme.InputBorder
+        boxRole.BorderThickness = 1
+        boxRole.CornerRadius = 10
+        For Each rb As RadioButton In {RadioButton1, RadioButton2}
+            rb.Font = Theme.FontBody
+            rb.ForeColor = Theme.TextPrimary
+            rb.BackColor = Color.Transparent
+        Next
+
+        ' Primary action
+        Theme.StylePrimaryButton(Button1)
+        Button1.CornerRadius = 10
+    End Sub
 
     ' LOG IN BUTTON CLICK (Button1)
     Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click

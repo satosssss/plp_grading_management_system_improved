@@ -198,7 +198,7 @@ Partial Class frmGradebook
         ' 
         ' frmGradebook
         ' 
-        AutoScaleDimensions = New SizeF(8F, 20F)
+        AutoScaleDimensions = New SizeF(7F, 15F)
         AutoScaleMode = AutoScaleMode.Font
         ClientSize = New Size(1445, 908)
         Controls.Add(PnlGrid)

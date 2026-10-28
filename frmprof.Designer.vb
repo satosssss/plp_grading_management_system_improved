@@ -297,17 +297,17 @@ Partial Class frmprof
         CustomButton6.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CustomButton6.BackColor = Color.Green
         CustomButton6.BorderColor = Color.Black
-        CustomButton6.BorderSize = 2
-        CustomButton6.CornerRadius = 10
+        CustomButton6.BorderSize = 0
+        CustomButton6.CornerRadius = 8
         CustomButton6.FlatStyle = FlatStyle.Flat
-        CustomButton6.Font = New Font("Segoe UI Semibold", 7.8F, FontStyle.Bold)
+        CustomButton6.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         CustomButton6.ForeColor = Color.White
         CustomButton6.HoverColor = Color.DarkGreen
         CustomButton6.Location = New Point(685, 8)
         CustomButton6.Margin = New Padding(3, 2, 3, 2)
         CustomButton6.Name = "CustomButton6"
         CustomButton6.NormalColor = Color.Green
-        CustomButton6.Size = New Size(129, 16)
+        CustomButton6.Size = New Size(129, 32)
         CustomButton6.TabIndex = 17
         CustomButton6.Text = "Add Assessment"
         CustomButton6.UseVisualStyleBackColor = False
@@ -317,17 +317,17 @@ Partial Class frmprof
         CustomButton4.Anchor = AnchorStyles.Top Or AnchorStyles.Right
         CustomButton4.BackColor = Color.Green
         CustomButton4.BorderColor = Color.Black
-        CustomButton4.BorderSize = 2
-        CustomButton4.CornerRadius = 10
+        CustomButton4.BorderSize = 0
+        CustomButton4.CornerRadius = 8
         CustomButton4.FlatStyle = FlatStyle.Flat
-        CustomButton4.Font = New Font("Segoe UI Semibold", 7.8F, FontStyle.Bold)
+        CustomButton4.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         CustomButton4.ForeColor = Color.White
         CustomButton4.HoverColor = Color.DarkGreen
         CustomButton4.Location = New Point(829, 8)
         CustomButton4.Margin = New Padding(3, 2, 3, 2)
         CustomButton4.Name = "CustomButton4"
         CustomButton4.NormalColor = Color.Green
-        CustomButton4.Size = New Size(129, 16)
+        CustomButton4.Size = New Size(129, 32)
         CustomButton4.TabIndex = 16
         CustomButton4.Text = "Open Digital Gradebook"
         CustomButton4.UseVisualStyleBackColor = False
@@ -531,17 +531,17 @@ Partial Class frmprof
         CustomButton3.Anchor = AnchorStyles.Bottom Or AnchorStyles.Right
         CustomButton3.BackColor = Color.Green
         CustomButton3.BorderColor = Color.Black
-        CustomButton3.BorderSize = 2
-        CustomButton3.CornerRadius = 10
+        CustomButton3.BorderSize = 0
+        CustomButton3.CornerRadius = 8
         CustomButton3.FlatStyle = FlatStyle.Flat
-        CustomButton3.Font = New Font("Segoe UI Semibold", 7.8F, FontStyle.Bold)
+        CustomButton3.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         CustomButton3.ForeColor = Color.White
         CustomButton3.HoverColor = Color.DarkGreen
         CustomButton3.Location = New Point(862, 266)
         CustomButton3.Margin = New Padding(3, 2, 3, 2)
         CustomButton3.Name = "CustomButton3"
         CustomButton3.NormalColor = Color.Green
-        CustomButton3.Size = New Size(80, 16)
+        CustomButton3.Size = New Size(80, 32)
         CustomButton3.TabIndex = 17
         CustomButton3.Text = "Save as Pdf"
         CustomButton3.UseVisualStyleBackColor = False
@@ -593,7 +593,8 @@ Partial Class frmprof
         CustomButton2.Margin = New Padding(3, 2, 3, 2)
         CustomButton2.Name = "CustomButton2"
         CustomButton2.NormalColor = Color.White
-        CustomButton2.Size = New Size(72, 16)
+        CustomButton2.Size = New Size(72, 30)
+        CustomButton2.Font = New Font("Segoe UI Semibold", 9.0F, FontStyle.Bold)
         CustomButton2.TabIndex = 14
         CustomButton2.Text = "Filter"
         CustomButton2.UseVisualStyleBackColor = False
@@ -1043,7 +1044,7 @@ Partial Class frmprof
         ' pnlRecordScores
         ' 
         pnlRecordScores.Anchor = AnchorStyles.Top Or AnchorStyles.Bottom Or AnchorStyles.Left Or AnchorStyles.Right
-        pnlRecordScores.BackColor = Color.Red
+        pnlRecordScores.BackColor = Color.White
         pnlRecordScores.Controls.Add(pnlFooter)
         pnlRecordScores.Controls.Add(TableLayoutPanel1)
         pnlRecordScores.Controls.Add(picRecord)
